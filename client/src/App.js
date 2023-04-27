@@ -2,12 +2,12 @@
 import './App.css';
 
 function App() {
-  let getDataFromServer=async()=>{
-    let reqOptions={
+  const getDataFromServer=async()=>{
+    const reqOptions={
       method:"GET"
     }
-    let JSONData=await fetch("http://localhost:4444/getData",reqOptions);
-    let JSOData=await JSONData.json();
+    const JSONData=await fetch("http://localhost:4444/getData",reqOptions);
+    const JSOData=await JSONData.json();
     console.log(JSOData);
   }
   return (
