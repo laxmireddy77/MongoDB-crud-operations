@@ -4,7 +4,7 @@ const cors=require("cors");
 const app=express();
 app.use(cors());
 app.get("/getData",async(req,res)=>{
-    let records= await User.find()
+    const records= await User.find()
     .distinct("gender")
     .select(
         {
@@ -28,7 +28,7 @@ res.json(records);
 app.listen(4444,()=>{
     console.log("Listening port 4444");
 })
-let connectToMDB=async()=>{
+const connectToMDB=async()=>{
     try{
  await mongoose.connect("mongodb://localhost:27017/India");
  console.log("Connected to MDB");
@@ -40,7 +40,7 @@ let connectToMDB=async()=>{
         console.log("Unable to connect to MDB");
     }
 }
-let UsersSchema=new mongoose.Schema({
+const UsersSchema=new mongoose.Schema({
     id:Number,
     firstName:String,
     lastName:String,
@@ -51,13 +51,13 @@ let UsersSchema=new mongoose.Schema({
     department:String,
     city:String
 });
-let User=new mongoose.model("users",UsersSchema);
+const User=new mongoose.model("users",UsersSchema);
 connectToMDB();
-let getDataFromDB=async()=>{
- let records= await User.find();
+const getDataFromDB=async()=>{
+ const records= await User.find();
  console.log(records);
 };
-let updateValueInDB=async()=>{
+const updateValueInDB=async()=>{
 try{
     await User.updateMany(
 {_id:"6417ee14a56ceffb0958547c"},
@@ -69,7 +69,7 @@ try{
     console.log("Something wrong in updating");
 }
 }
-let deleteFromDB=async()=>{
+const deleteFromDB=async()=>{
     try{
         await User.deleteMany({
             country:"China",gender:"Female"
